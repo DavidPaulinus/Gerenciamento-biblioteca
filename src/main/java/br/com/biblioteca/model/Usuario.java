@@ -2,6 +2,7 @@ package br.com.biblioteca.model;
 
 import java.time.LocalDate;
 
+import br.com.biblioteca.model.DTO.UserDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,4 +27,18 @@ public class Usuario {
 	private LocalDate devolucao;
 	@ManyToOne
 	private Livro livro;
+
+	public Usuario(UserDTO dto) {
+		this.nome = dto.nome();
+		this.emprestimo = dto.emprestimo();
+		this.devolucao = dto.devolucao();
+		this.livro = dto.livro();
+	}
+
+	public void atualizar(UserDTO dto) {
+		this.nome = dto.nome();
+		this.emprestimo = dto.emprestimo();
+		this.devolucao = dto.devolucao();
+		this.livro = dto.livro();
+	}
 }
