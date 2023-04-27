@@ -1,6 +1,8 @@
 package br.com.biblioteca.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import br.com.biblioteca.model.Livro;
@@ -17,6 +19,14 @@ public class LivroService {
 		repo.save(liv);
 		
 		return liv;
+	}
+
+	public Page<Livro> listarLivros() {
+		return new PageImpl<>(repo.findAll());
+	}
+
+	public Livro detalharLivroPorId(Long id) {
+		return repo.findById(id).orElseThrow(() -> new RuntimeException("ID inválido."));
 	}
 
 }
