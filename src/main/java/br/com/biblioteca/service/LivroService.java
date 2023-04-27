@@ -36,4 +36,10 @@ public class LivroService {
 		return liv;
 	}
 
+	public Page<Livro> excluirLivroPorId(Long id) {
+		repo.deleteById(id);
+		
+		return listarLivros();
+	}
+
 }
