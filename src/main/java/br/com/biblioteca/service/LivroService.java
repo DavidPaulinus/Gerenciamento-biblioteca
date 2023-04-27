@@ -29,4 +29,11 @@ public class LivroService {
 		return repo.findById(id).orElseThrow(() -> new RuntimeException("ID inválido."));
 	}
 
+	public Livro editar(LivroDTO dto, Long id) {
+		var liv = detalharLivroPorId(id);
+		liv.atualizar(dto);
+		
+		return liv;
+	}
+
 }

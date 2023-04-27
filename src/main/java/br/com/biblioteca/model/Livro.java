@@ -41,4 +41,14 @@ public class Livro {
 		this.localizacao = dto.localizacao();
 		this.emprestado = null;
 	}
+
+	public void atualizar(LivroDTO dto) {
+		this.nome = dto.nome();
+		this.descricao = dto.descricao();
+		this.dataPublicacao = dto.dataPublicacao();
+		this.quantidade = dto.quantidade();
+		this.estoque = dto.estoque();
+		this.localizacao = dto.localizacao();
+		this.emprestado = dto.emprestado();
+	}
 }

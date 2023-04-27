@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,5 +38,13 @@ public class BibliotecaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<DetalharLivroDTO> detalharLivroPorId(@PathVariable Long id){
 		return ResponseEntity.ok(new DetalharLivroDTO(serv.detalharLivroPorId(id)));
+	}
+	
+	@PutMapping("/{id}")
+	@Transactional
+	public ResponseEntity<DetalharLivroDTO> editarLivro(@RequestBody LivroDTO dto, @PathVariable Long id){
+		var liv = serv.editar(dto, id);
+		
+		return ResponseEntity.ok(new DetalharLivroDTO(liv));
 	}
 }
